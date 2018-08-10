@@ -11,20 +11,22 @@ router.get('/', function(req, res, next) {
     });
 });
 
-/* GET active users */
-router.get('/active', function(req, res, next) {
-    const result=res;
-    const db_result=db.query("SELECT * FROM users WHERE active=TRUE;", [], (err,res)=>{
-        result.status(200).send(res.rows);
-    });
-});
 
 
 /* GET users by husky_id */
 router.get('/id/:id', function(req, res, next) {
     const result=res;
     console.log(req.params.id);
-    const db_result=db.query("SELECT * FROM users WHERE husky_id='"+req.params.id+"';", [], (err,res)=>{
+    const db_result=db.query("SELECT * FROM users WHERE id=$1;", [req.params.id], (err,res)=>{
+        result.status(200).send(res.rows);
+    });
+});
+
+/* GET users by husky_id */
+router.get('/hid/:id', function(req, res, next) {
+    const result=res;
+    console.log(req.params.id);
+    const db_result=db.query("SELECT * FROM users WHERE husky_id=$1;", [req.params.id], (err,res)=>{
         result.status(200).send(res.rows);
     });
 });
@@ -39,9 +41,9 @@ router.post('/new/active', function(req, res, next){
         if(req.body.husky==null){
             result.status(500).send("cannot have null husky_id");
         }else{
-            let query='INSERT INTO users(id,husky_id,pos,college,special_interest, first_name, last_name, active)' +
-                ' VALUES($1, $2, $3, $4, $5, $6, $7, $8);';
-            let values=[id+1,req.body.husky,req.body.pos,req.body.college, req.body.special, req.body.first, req.body.last, true];
+            let query='INSERT INTO users(id, husky_id, first_name, last_name, phone)' +
+                ' VALUES($1, $2, $3, $4, $5);';
+            let values=[id+1,req.body.husky, req.body.first, req.body.last, req.body.phone];
             const add_query=db.query(query,values, (err,res)=>{
                 if(err){
                     console.log(err.stack);
@@ -60,8 +62,8 @@ router.post('/new/active', function(req, res, next){
 
 router.post('/update/:update',function(req, res, next){
         const result=res;
-       let query="UPDATE users SET $1=$3 WHERE \"id\"=$2;";
-       let values=[req.params.update,req.body.id, req.body.value];
+       let query="UPDATE users SET "+req.params.update+"=$2 WHERE \"id\"=$1;";
+       let values=[req.body.id, req.body.value];
        db.query(query,values,(err,res)=>{
            if(err){
                console.log(err.stack);

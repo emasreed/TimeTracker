@@ -1,13 +1,89 @@
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 
 <head>
-  <title>Express</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Time Tracking</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="javascripts/htmlDriver.js"></script>
 </head>
 
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Enter Hours</a></li>
+            <li><a href="/AddUser.html">Add User</a></li>
+            <li><a href="#">Generate Report</a></li>
+            <li><a href="#">See All Users</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well" id="form">
+                <h4>Husky Id</h4>
+                <input v-model="husky_id" placeholder="Husky Id">
+                <br />
+                <h4>Type of Advocacy Hour</h4>
+                <select v-model="type">
+                    <option disabled value="">Please select type of Advocacy</option>
+                    <option>Senator Training and Education Program</option>
+                    <option>Working on Reaching Out</option>
+                    <option>Helping with Outreach Event</option>
+                    <option>Special Interest Senator</option>
+                    <option>Sitting on Two or more Committees or a board</option>
+                    <option>Academic Ambassador</option>
+                    <option>Tabling</option>
+                    <option>Other</option>
+                </select>
+                <h4>Date</h4>
+                <input type="date" id="date" v-model="date">
+                <br />
+                <h4>Committee</h4>
+                <input type="radio" id="student_services" value="1" v-model="committee">
+                <label for="student_services">Student Services</label>
+                <br />
+                <input type="radio" id="student_affairs" value="2" v-model="committee">
+                <label for="student_affairs">Student Affairs</label>
+                <br />
+                <input type="radio" id="academic_affairs" value="3" v-model="committee">
+                <label for="academic_affairs">Academic Affairs</label>
+                <br />
+                <input type="radio" id="finance" value="4" v-model="committee">
+                <label for="finance">Finance Board</label>
+                <br />
+                <input type="radio" id="elections" value="5" v-model="committee">
+                <label for="elections">Elections Committee</label>
+                <br />
+                <input type="radio" id="communications" value="6" v-model="committee">
+                <label for="communications">Two</label>
+                <br />
+                <input type="radio" id="involvement" value="6" v-model="committee">
+                <label for="involvement">Student Involvement Board</label>
+                <br />
+                <button class="btn" v-on:click="greet">Greet</button>
+
+            </div>
+            <div class="well" style="display:none;">
+                <h4>Thank you for your submission. Refresh to add another.</h4>
+            </div>
+        </div>
+    </div>
+
+
+</div>
 </body>
 
 </html>
