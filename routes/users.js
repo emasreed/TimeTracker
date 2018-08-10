@@ -31,11 +31,15 @@ router.get('/hid/:id', function(req, res, next) {
     });
 });
 
-router.post('/new/active', function(req, res, next){
+router.post('/add', function(req, res, next){
     const result=res;
     console.log(req.body);
     let id=0;
     const id_query=db.query("SELECT MAX(id) FROM users;",[],(err,res)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
         id=res.rows[0].max;
         console.log(id);
         if(req.body.husky==null){

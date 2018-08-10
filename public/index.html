@@ -52,31 +52,31 @@
                 <input type="date" id="date" v-model="date">
                 <br />
                 <h4>Committee</h4>
-                <input type="radio" id="student_services" value="1" v-model="committee">
+                <input type="radio" id="student_services" value="student_services" v-model="committee">
                 <label for="student_services">Student Services</label>
                 <br />
-                <input type="radio" id="student_affairs" value="2" v-model="committee">
+                <input type="radio" id="student_affairs" value="student_affairs" v-model="committee">
                 <label for="student_affairs">Student Affairs</label>
                 <br />
-                <input type="radio" id="academic_affairs" value="3" v-model="committee">
+                <input type="radio" id="academic_affairs" value="academic_affairs" v-model="committee">
                 <label for="academic_affairs">Academic Affairs</label>
                 <br />
-                <input type="radio" id="finance" value="4" v-model="committee">
+                <input type="radio" id="finance" value="finance" v-model="committee">
                 <label for="finance">Finance Board</label>
                 <br />
-                <input type="radio" id="elections" value="5" v-model="committee">
+                <input type="radio" id="elections" value="elections" v-model="committee">
                 <label for="elections">Elections Committee</label>
                 <br />
-                <input type="radio" id="communications" value="6" v-model="committee">
-                <label for="communications">Two</label>
+                <input type="radio" id="communications" value="communcations" v-model="committee">
+                <label for="communications">Communcations</label>
                 <br />
-                <input type="radio" id="involvement" value="6" v-model="committee">
+                <input type="radio" id="involvement" value="student_involvement" v-model="committee">
                 <label for="involvement">Student Involvement Board</label>
                 <br />
-                <button class="btn" v-on:click="greet">Greet</button>
+                <button class="btn" v-on:click="add">Add Hours</button>
 
             </div>
-            <div class="well" style="display:none;">
+            <div class="well" style="display:none;" id="success">
                 <h4>Thank you for your submission. Refresh to add another.</h4>
             </div>
         </div>

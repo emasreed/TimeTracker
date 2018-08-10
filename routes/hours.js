@@ -19,6 +19,9 @@ router.post('/add', function(req, res, next) {
     console.log(req.body.user_id);
     const quer="INSERT INTO hours(user_id, date, action_type, committee) VALUES($1, $2, $3, $4);";
     const db_result=db.query(quer, [req.body.user_id, req.body.date, req.body.description, req.body.committee], (err,res)=>{
+        if(err){
+            result.status(400).send(err);
+        }
         result.status(200).send(res);
     });
 });

@@ -1,10 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 
+<head>
+    <title>Time Tracking</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="javascripts/AddUser.js"></script>
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/index.html">Enter Hours</a></li>
+            <li class="active"><a href="#">Add User</a></li>
+            <li><a href="#">Generate Report</a></li>
+            <li><a href="#">See All Users</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well" id="form">
+                <h2>Enter New User Information</h2>
+                <label for="husky_id">Husky ID</label>
+                <input id="husky_id" v-model="husky_id" placeholder="Husky Id">
+                <br />
+                <label for="first_name">First Name</label>
+                <input id="first_name" v-model="first_name" placeholder="First Name">
+                <br />
+                <label for="last_name">Last Name</label>
+                <input id="last_name" v-model="last_name" placeholder="Last Name">
+                <br />
+                <label for="phone_number">Phone Number</label>
+                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone_number" v-model="phone_number" placeholder="Phone Number">
+                <br />
+                <div id='example-3'>
+                    <ul>
+                        <li>
+                            <input type="checkbox" id="senator" value="Senator" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="senator">Senator</label>
+                            <ul id="senator_details" v-if="senator_select">
+                                <li class="senator_type">
+                                    <input type="radio" id="academic_senator" value="academic_senator" v-model="senator" v-on:change="checkboxToggle">
+                                    <label for="academic_senator">Academic Senator</label>
+                                    <ul id="academic_details" class="type_details" v-if="academic">
+                                        <li>
+                                            <label for="college">Constituency</label>
+                                            <input id="college" value="college" v-model="senator_constituency" v-on:change="checkboxToggle">
+
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="senator_type">
+                                    <input type="radio" id="special_senator" value="special_senator" v-model="senator" v-on:change="checkboxToggle">
+                                    <label for="special_senator">Special Senator</label>
+                                    <ul id="special_details" class="type_details" v-if="special">
+                                        <li>
+                                            <label for="special">Constituency</label>
+                                            <input id="special" value="special" v-model="senator_constituency" v-on:change="checkboxToggle">
+
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cabinet" value="Cabinet" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="cabinet">Cabinet Member</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="sib" value="SIB" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="sib">Student Involvement Board</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="finance" value="Finance" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="finance">Finance Board</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="academic_affairs" value="academic_affairs" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="academic_affairs">Academic Affairs</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="student_affairs" value="student_affairs" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="student_affairs">Student Affairs</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="student_services" value="student_services" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="student_services">Student Services</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="elections" value="elections" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="elections">Elections</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="communications" value="communications" v-model="roles" v-on:change="checkboxToggle">
+                            <label for="communications">Communications</label>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+                <button class="btn" v-on:click="greet"  v-if="completed">Add User</button>
+
+            </div>
+            <div id="error">
+                <h4></h4>
+            </div>
+            <div class="well" style="display:none;">
+                <h4>Thank you for your submission. Refresh to add another.</h4>
+            </div>
+        </div>
+    </div>
+
+
+</div>
 </body>
+
 </html>

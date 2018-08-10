@@ -6,8 +6,9 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const dataRouter=require('./routes/data');
-const memberRouter=require('./routes/members')
+const memberRouter=require('./routes/members');
 const hoursRouter=require('./routes/hours');
+const committeeRouter=require('./routes/committee');
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use('/users', usersRouter);
 app.use('/data',dataRouter);
 app.use('/members',memberRouter);
 app.use('/hours',hoursRouter);
+app.use('/committee',committeeRouter);
 
 module.exports = app;
